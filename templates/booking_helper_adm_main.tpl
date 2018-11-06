@@ -143,6 +143,7 @@
                   <label>
                     <input type="checkbox" value="${item.jbt_sn}" ${item.can_order ? '' : 'disabled'}>
                     <span class="${item.can_order ? '' : 'cant-use'}">${item.jbt_title}</span>
+                    ${item.can_order ? '' : 'by ' + item.order_user + ' (' + item.event + ')'}
                   </label>
                 </div>
               `);
