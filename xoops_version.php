@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_BOOKING_HELPER_NAME;
-$modversion['version']     = 1.00;
+$modversion['version']     = 1.01;
 $modversion['description'] = _MI_BOOKING_HELPER_DESC;
 $modversion['author']      = 't301000';
 $modversion['credits']     = 't301000';
@@ -14,20 +14,20 @@ $modversion['image']       = 'images/logo.png';
 $modversion['dirname']     = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2015/03/21';
-$modversion['module_website_url']  = 'http://模組官網網址';
-$modversion['module_website_name'] = '模組官網名稱';
+$modversion['release_date']        = '2018/11/06';
+$modversion['module_website_url']  = 'https://github.com/t301000/booking-helper';
+$modversion['module_website_name'] = 't301000/booking-helper';
 $modversion['module_status']       = 'release';
-$modversion['author_website_url']  = 'http://作者網站網址';
-$modversion['author_website_name'] = '作者網站名稱';
+$modversion['author_website_url']  = 'https://github.com/t301000/booking-helper';
+$modversion['author_website_name'] = 't301000/booking-helper';
 $modversion['min_php']             = 5.2;
 $modversion['min_xoops']           = '2.5';
 $modversion['min_tadtools']        = '1.20';
 
 //---paypal資訊---//
 $modversion['paypal']                  = array();
-$modversion['paypal']['business']      = '作者@的Email';
-$modversion['paypal']['item_name']     = 'Donation : ' . '贊助對象名稱';
+$modversion['paypal']['business']      = 't301000@gmail.com';
+$modversion['paypal']['item_name']     = 'Donation : ' . 't301000';
 $modversion['paypal']['amount']        = 0;
 $modversion['paypal']['currency_code'] = 'USD';
 
