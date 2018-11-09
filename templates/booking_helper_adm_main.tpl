@@ -50,7 +50,7 @@
         const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
 
         let data = {...initData};
-        console.log(data, initData);
+        // console.log(data, initData);
 
         bookingDateInput.on('blur', init);
         dateImg.on('click', init);
@@ -65,18 +65,27 @@
           if (values.length === 0) {
               return;
           }
-          console.log(jbiSnSelect.val(),JSON.stringify({...data, values}));
-          $.post(`${location.href}?op=create_orders`, {...data, event: eventInput.val(), values})
-            .then(data => {
-                init();
-                // bookingDateInput.val(null);
-                msgBlock.text("預約完成！！");
-                msgBlock.show();
-                setTimeout(() => {
-                    msgBlock.text(null);
-                    msgBlock.hide();
-                }, 2000);
-            });
+
+          $.ajax({
+              type: 'POST',
+              url: `${location.href}?op=create_orders`,
+              async: true,
+              data: JSON.stringify({...data, event: eventInput.val(), values}),
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: data => {
+                  init();
+                  getTimeBtn.hide();
+                  // bookingDateInput.val(null);
+                  msgBlock.text("預約完成！！");
+                  msgBlock.show();
+                  setTimeout(() => {
+                      msgBlock.text(null);
+                      msgBlock.hide();
+                      getTimeBtn.show();
+                  }, 2000);
+              }
+          });
 
         });
 
@@ -95,7 +104,7 @@
             orderBtn.hide();
             // jbiSnSelect.prop('disabled', bookingDateInput.val() === '');
             data = {...initData};
-            console.log(data, initData);
+            // console.log(data, initData);
         }
 
         // 取得某場地的全部時段
@@ -111,14 +120,14 @@
             jbiDateText.text(`預約日期： ${data.jb_date} (${weekday})`);
 
             data.jbi_sn = +jbiSnSelect.val();
-            console.log(data, initData);
+            //console.log(data, initData);
 
             timeList.text('資料載入中....');
             let dayOfWeek = new Date(data.jb_date).getDay();
-            console.log(data.jbi_sn, data.jb_date, dayOfWeek);
+            //console.log(data.jbi_sn, data.jb_date, dayOfWeek);
             $.get(`${location.href}?op=get_times_of_item&sn=${data.jbi_sn}&date=${data.jb_date}`)
              .then(data => {
-                 let items = getTimeByDay(JSON.parse(data), dayOfWeek);
+                 let items = getTimeByDay(data, dayOfWeek);
                  getTimeBtn.hide();
                  (items && items.length > 0) ? generateTimeList(items) : timeList.text('無開放之時段');
              });

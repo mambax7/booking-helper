@@ -51,13 +51,13 @@ switch ($op) {
 
             return $orig;
         }, $data);
-
-        die(getJSONResponse($data));
+        echo getJSONResponse($data);
+        die();
 
     case 'create_orders':
-        $data = $_POST;
+        $data = file_get_contents("php://input");
 
-        $result = createOrders($data);
+        $result = createOrders(json_decode($data, true));
 
         die(getJSONResponse(compact('result')));
 
@@ -214,5 +214,7 @@ function getUsedTimes($times, $date) {
 
 // 處理欲回傳之 json
 function getJSONResponse($data) {
+    header('Content-Type:application/json;charset=utf-8');
+
     return json_encode($data, JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
