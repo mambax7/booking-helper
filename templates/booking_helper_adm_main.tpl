@@ -21,8 +21,8 @@
     </div>
 
     <div class="col-sm-9 col-md-10">
-      <button type="button" class="btn btn-default" id="get-time-btn">取得時段</button>
-      <button type="button" class="btn btn-default" id="order-btn" style="display: none;">預約</button>
+      <button type="button" class="btn btn-default btn-outline-primary" id="get-time-btn">取得時段</button>
+      <button type="button" class="btn btn-default btn-outline-primary" id="order-btn" style="display: none;">預約</button>
       <div id="message" style="display: none; color: #ff0000; padding: 0 10px;"></div>
       <div id="jbi-date-text" style="margin: 10px 0;"></div>
       <div id="time-list"></div>
