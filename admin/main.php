@@ -91,7 +91,22 @@ function show_content()
 function createOrders($data) {
     global $xoopsDB, $xoopsUser;
 
-    $jb_date = trim($data['jb_date']); // 日期
+    $jb_date = trim($data['jb_date']); // 起始日期
+
+    /*
+     * 因為是以批次預約方式，但原模組在刪除批次預約之預約時段紀錄時有 bug，
+     * 若該筆批次預約單之 結束日期 與 起始日期 相同（本模組原來的模式），
+     * 則刪除任一筆時段紀錄時會造成預約單刪除，但時段紀錄並未全數刪除，而造成問題。
+     * https://campus-xoops.tn.edu.tw/modules/tad_discuss/discuss.php?DiscussID=5321&BoardID=66
+     *
+     * 暫時解法：
+     *   將預約單之結束日期設為起始日期+1天
+     */
+    $jb_date_end = strtotime($jb_date); // 將日期轉為Unix時間戳記
+    $jb_date_end = strtotime('+1 day', $jb_date_end); // 加一天
+    $jb_date_end= date('Y-m-d', $jb_date_end); // 將Unix時間戳記轉回日期
+    // die($jb_date_end);//會顯示如 2008-01-02
+
     // $jbi_sn = $data['jbi_sn']; // 場地 id
     $jbt_sn_array = $data['values']; // 時段 array
     // 進行預約之時間，取執行當下時間
@@ -106,7 +121,7 @@ function createOrders($data) {
 
 
     // INSERT INTO `xx_jill_booking` (`jb_sn`, `jb_uid`, `jb_booking_time`, `jb_booking_content`, `jb_start_date`, `jb_end_date`) VALUES (1, 1, '2018-11-02 21:53:34', '個人預約', '2018-11-02', '2018-11-02');
-    $sql = "INSERT INTO {$xoopsDB->prefix('jill_booking')} (`jb_uid`, `jb_booking_time`, `jb_booking_content`, `jb_start_date`, `jb_end_date`) VALUES ('{$uid}', '{$orderAt}', '{$event}', '{$jb_date}', '{$jb_date}')";
+    $sql = "INSERT INTO {$xoopsDB->prefix('jill_booking')} (`jb_uid`, `jb_booking_time`, `jb_booking_content`, `jb_start_date`, `jb_end_date`) VALUES ('{$uid}', '{$orderAt}', '{$event}', '{$jb_date}', '{$jb_date_end}')";
     $xoopsDB->query($sql) or web_error($sql);
     $jb_sn = $xoopsDB->getInsertId(); // 取得最新的預約單 id
 
