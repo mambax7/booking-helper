@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_BOOKING_HELPER_NAME;
-$modversion['version']     = 1.11;
+$modversion['version']     = 1.12;
 $modversion['description'] = _MI_BOOKING_HELPER_DESC;
 $modversion['author']      = 't301000';
 $modversion['credits']     = 't301000';
