@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_BOOKING_HELPER_NAME;
-$modversion['version']     = 1.12;
+$modversion['version']     = 1.13;
 $modversion['description'] = _MI_BOOKING_HELPER_DESC;
 $modversion['author']      = 't301000';
 $modversion['credits']     = 't301000';
@@ -56,11 +56,11 @@ $modversion['hasMain'] = 0;
 //---樣板設定---//
 $modversion['templates']                    = array();
 $i                                          = 1;
-$modversion['templates'][$i]['file']        = 'booking_helper_adm_main.tpl';
+$modversion['templates'][$i]['file']        = 't301000_booking_helper_adm_main.tpl';
 $modversion['templates'][$i]['description'] = '後台管理頁樣板';
 
 $i++;
-$modversion['templates'][$i]['file']        = 'booking_helper_index.tpl';
+$modversion['templates'][$i]['file']        = 't301000_booking_helper_index.tpl';
 $modversion['templates'][$i]['description'] = '模組首頁樣板';
 
 //---偏好設定---//

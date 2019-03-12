@@ -1,6 +1,6 @@
 <?php
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = "booking_helper_adm_main.tpl";
+$xoopsOption['template_main'] = "t301000_booking_helper_adm_main.tpl";
 include_once "header.php";
 include_once "../function.php";
 
